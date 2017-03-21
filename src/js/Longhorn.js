@@ -11,10 +11,18 @@
      * [constructor for Longhorn]
      * @param  {String} name        [name of this instance of Longhorn]
      * @param  {Date}   dateOfBirth [Date object containing date of birth]
+     * @throws any.error            Propagates the error received from the parent class
      * @return {void}               [nothing is returned]
      */
     constructor(name, dateOfBirth) {
-      super(name, dateOfBirth); // call the parent class constructor
+      // if the call to the base class constructor fails,
+      // log error and propagate the error
+      try {
+        super(name, dateOfBirth); // call the parent class constructor
+      } catch (error) {
+        console.error('super() call to Animal constructor failed!');
+        throw error;
+      }
       this.species = 'Texas Longhorn';
     }
 
@@ -31,16 +39,24 @@
      * [give birth]
      * @param  {String}  name        [name string]
      * @param  {Date}    dateOfBirth [Date of Birth]
+     * @throws ReferenceError        If constructor call fails
      * @return {Longhorn}            [returning new Longhorn instance]
      */
     giveBirth(name, dateOfBirth) {
-      return new Longhorn(name, dateOfBirth);
+      let newLonghorn = new Longhorn(name, dateOfBirth);
+      // only return the new instance if constructor call was successful
+      if (newLonghorn) {
+        return newLonghorn;
+      } else {
+        throw ReferenceError;
+      }
     }
 
     /**
      * [75% chance the animal will charge if you walk in front]
      * [Otherwise it will ignore you]
      * @param  {String}  position [caller's physical location]
+     * @throws Error              Throws generic Error if Math calls fail
      * @return {Boolean}          [Whether animal charged or not]
      */
     mayCharge(position) {
@@ -48,6 +64,10 @@
       if (position === 'in front') {
         if (Math.ceil(Math.random() * 100) > 25) {
           charge = true;
+          // throw generic error if we failed to set charge to true
+          if (!charge) {
+            throw Error;
+          }
         }
       }
       return charge;
@@ -55,10 +75,15 @@
 
     /**
      * [overrride Animal.toString()]
+     * @throws ReferenceError  Throws if this.species doesn't exist
      * @return {void} [nothing is returned]
      */
     toString() {
-      console.log('This animal\'s species is: ', this.species);
+      if (!this.species) {
+        throw ReferenceError;
+      } else {
+        console.log('This animal\'s species is: ', this.species);
+      }
     }
   };
 }());

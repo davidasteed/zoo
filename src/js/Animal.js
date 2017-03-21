@@ -9,52 +9,61 @@
      * [parent class constructor]
      * @param  {String} name        [name of the Animal instance]
      * @param  {Date} dateOfBirth   [Date object storing date of birth]
+     * @throws TypeError            Throws if data type is incorrect
      * @return {void}               [returns nothing]
      */
     constructor(name, dateOfBirth) {
-      this.name = name;
+      // error handling for name argument
+      if (typeof(name) === 'string') {
+        this.name = name;
+      } else {
+        throw TypeError;
+      }
 
-      // if no date of birth provided,
-      // assume this is a newborn animal
-      // else accept the argument
-      if (!(dateOfBirth instanceof Date)) {
+      // error handling for dateOfBirth
+      if (dateOfBirth instanceof Date) {
+        this.dateOfBirth = dateOfBirth;
+      } else if (dateOfBirth === undefined) {
         this.dateOfBirth = new Date();
       } else {
-        this.dateOfBirth = dateOfBirth;
+        throw TypeError;
       }
     }
 
     /**
      * [set a value on the name for a class instance]
-     * @param {void} void is returned
+     * @param  {void}        void is returned
+     * @throws TypeError     Throws if data type is incorrect
      */
     setName(name) {
-      this.name = name;
+      if (typeof(name) === 'string') {
+        this.name = name;
+      } else {
+        throw TypeError;
+      }
       return;
     }
 
     /**
-     * [return the date of birth for a class instance]
-     * @return {Date} [return Date object]
-     */
-    getDob() {
-      return this.dateOfBirth;
-    }
-
-    /**
      * [return the age in years]
-     * @return {Number} [difference in years between current date
-     *                   and date of birth]
+     * @return {Number}         Difference in years between current date
+     *                          and date of birth
+     * @throws ReferenceError   Throws if objects cannot be de-referenced
      */
     ageInYears() {
       // store the current date
-      let currentYear = new Date().getFullYear();
-      return currentYear - this.dateOfBirth.getFullYear();
+      let age = new Date().getFullYear() - this.dateOfBirth.getFullYear();
+      if (age !== undefined) {
+        return age;
+      } else {
+        throw ReferenceError;
+      }
     }
 
     /**
      * [override Object.toString]
-     * @return {String} [name and date of birth from object instance]
+     * @return {String}       Name and date of birth from object instance
+     * @throws ReferenceError Throws if objects cannot be de-referenced
      */
     toString() {
       let returnString = 'This animal\'s name is: ' +
@@ -62,7 +71,11 @@
       this.dateOfBirth.getDate() + '/' +
       (this.dateOfBirth.getMonth() + 1) + '/' +
       this.dateOfBirth.getFullYear();
-      return returnString;
+      if (typeof(returnString) === 'string') {
+        return returnString;
+      } else {
+        throw ReferenceError;
+      }
     }
   };
 
