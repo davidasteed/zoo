@@ -28,6 +28,9 @@
       } else {
         throw TypeError;
       }
+
+      // set animal to be alive
+      this.isDead = false;
     }
 
     /**
@@ -48,15 +51,21 @@
      * [return the age in years]
      * @return {Number}         Difference in years between current date
      *                          and date of birth
+     * @throws Error            Throws generic error if animal is dead
      * @throws ReferenceError   Throws if objects cannot be de-referenced
      */
     ageInYears() {
-      // store the current date
-      let age = new Date().getFullYear() - this.dateOfBirth.getFullYear();
-      if (age !== undefined) {
-        return age;
+      // return error if the Animal class or child class is dead
+      if (this.isDead) {
+        throw Error;
       } else {
-        throw ReferenceError;
+        // store the current date
+        let age = new Date().getFullYear() - this.dateOfBirth.getFullYear();
+        if (age !== undefined) {
+          return age;
+        } else {
+          throw ReferenceError;
+        }
       }
     }
 
@@ -77,6 +86,21 @@
         throw ReferenceError;
       }
     }
-  };
 
+    /**
+     * [sets the death state of the Animal class or child classes]
+     * @throws ReferenceError Throws if objects cannot be de-referenced
+     * @return {void} [returns nothing]
+     */
+    expire() {
+      // set isDead property to true
+      this.isDead = true;
+      if (!this.isDead) {
+        throw ReferenceError;
+      }
+      else {
+        return;
+      }
+    }
+  };
 }());

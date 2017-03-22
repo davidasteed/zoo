@@ -178,4 +178,42 @@
   } catch (error) {
     console.error('Failure to evaluate if ', myLonghorn, 'will charge!');
   }
+
+  // test if a child class instance dies,
+  // that an Error object should be thrown if
+  // someone asks for the age
+
+  // Komodo dies
+  try {
+    myKomodo.expire();
+    console.log(myKomodoName, 'has died.');
+  } catch (error) {
+    console.error('Failure to change the death state of', myKomodoName);
+  }
+
+  // Attempt to obtain the Komodo's age (should fail)
+  try {
+    console.log('The', myKomodoName + '\'s age is', myKomodo.ageInYears());
+  } catch (warn) {
+    console.warn('Since', myKomodoName, 'has died, the attempt to obtain the age failed, as expected');
+  }
+
+  //
+  // Validate that a living Komodo can have the age retrieved
+  //
+
+  // Komodo is living again
+  try {
+    myKomodo.isDead = false;
+    console.log(myKomodoName, 'comes back to life.');
+  } catch (error) {
+    console.error('Failure to change the dead state of ', myKomodoName);
+  }
+
+  // Attempt to obtain the Komodo's age (should succeed)
+  try {
+    console.log('The living', myKomodo.name + '\'s age is', myKomodo.ageInYears());
+  } catch (warn) {
+    console.warn('Since the Komodo has died, the attempt to obtain the age failed, as expected');
+  }
 }());
