@@ -3,7 +3,7 @@
 
   window.zoo = window.zoo || {};
 
-
+  
   // allows creation of custom error
   window.zoo.CustomError = function CustomError(message) {
     this.name = 'CustomError';

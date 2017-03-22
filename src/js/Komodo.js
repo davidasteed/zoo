@@ -11,7 +11,7 @@
      * [Komodo class constructor]
      * @param  {String} name        [name of this instance of a Komodo]
      * @param  {Date}   dateOfBirth [date object storing Date of Birth]
-     * @throws any.error            Propagates the error received from the parent class
+     * @throws any.error            Propagates the error received from   *                              the parent class
      * @return {void}               [nothing is returned]
      */
     constructor(name, dateOfBirth) {
@@ -38,7 +38,7 @@
 
     /**
      * [lay a random number of eggs between 1 and 10]
-     * @throws Error            Throws generic error if Math function calls fail
+     * @throws Error            Throws generic error if Math function calls *                          fail
      * @return {Number} [random number of up of 1-10 eggs]
      */
     layEggs() {
