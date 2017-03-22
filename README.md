@@ -3,7 +3,7 @@ week 6 day 1
 
 Author: David Steed
 
-Assigment:  Learn to work with classes: constructors, parent constructor ( super() ), basic inheritance, static functions, member functions and properties, overriding functions.  Each class has basic tests (try/throw/catch) implemented to propagate errors to the test/validation statements in visizoo.js.
+Assigment:  Learn to work with classes: constructors, parent constructor ( super() ), basic inheritance, static functions, member functions and properties, overriding functions.  Each class has basic tests (try/throw/catch) implemented to propagate errors to the test/validation statements in visizoo.js.  A custom error was also tested and validated.
 
 How to start:
 1) Clone the repository
