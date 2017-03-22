@@ -9,6 +9,7 @@
      * [parent class constructor]
      * @param  {String} name        [name of the Animal instance]
      * @param  {Date} dateOfBirth   [Date object storing date of birth]
+     * @throws {CustomError}        [Throw a custom error name provided is invalid]
      * @throws TypeError            Throws if data type is incorrect
      * @return {void}               [returns nothing]
      */
@@ -17,7 +18,11 @@
       if (typeof(name) === 'string') {
         this.name = name;
       } else {
-        throw TypeError;
+        // throw a custom error if name provided is invalid
+        let CustomError = window.zoo.CustomError;
+        CustomError.prototype = Object.create(Error.prototype);
+        CustomError.prototype.constructor = CustomError;
+        throw new CustomError('The Animal base constructor failed: invalid name provided!');
       }
 
       // error handling for dateOfBirth

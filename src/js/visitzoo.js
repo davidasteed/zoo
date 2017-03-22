@@ -14,7 +14,8 @@
   try {
     let errorAnimal1 = new Animal(errorValue);
   } catch(warning) {
-    console.warn('New Animal with erroneous name of datatype Array failed as expected');
+    console.warn('Invalid name provided threw the following custom error:');
+    console.warn(warning.message);
   }
 
   // catch attempt to create Animal with an invalid date of birth value
@@ -91,7 +92,8 @@
     console.log('The new Komodo is named:', myKomodoName);
     console.log('The new Komodo was born on', myKomodo.dateOfBirth.getFullYear());
   } catch (error) {
-    console.error('Failed to print name and year of the new Komodo!');
+    console.error(error.name);
+    console.error(error.message);
   }
 
   // print out the scientific name
@@ -143,7 +145,8 @@
     console.log('The new Longhorn name is:', myLonghornName);
     console.log('The new Longhorn was born on', myLonghorn.dateOfBirth.getFullYear());
   } catch (error) {
-    console.error('');
+    console.error(error.name);
+    console.error(error.message);
   }
 
   // print out the scientific name
