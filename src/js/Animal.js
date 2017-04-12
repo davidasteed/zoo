@@ -4,6 +4,11 @@
   // create namespace if is doesn't already exist
   window.zoo = window.zoo || {};
 
+  // initialize custom error object prior to catch blocks
+  let CustomError = window.zoo.CustomError;
+  CustomError.prototype = Object.create(Error.prototype);
+  CustomError.prototype.constructor = CustomError;
+
   window.zoo.Animal = class Animal {
     /**
      * [parent class constructor]
@@ -19,9 +24,6 @@
         this.name = name;
       } else {
         // throw a custom error if name provided is invalid
-        let CustomError = window.zoo.CustomError;
-        CustomError.prototype = Object.create(Error.prototype);
-        CustomError.prototype.constructor = CustomError;
         throw new CustomError('The Animal base constructor failed: invalid name provided!');
       }
 
@@ -31,7 +33,7 @@
       } else if (dateOfBirth === undefined) {
         this.dateOfBirth = new Date();
       } else {
-        throw TypeError;
+        throw new TypeError('dateOfBirth was not a Date Object!');
       }
 
       // set animal to be alive

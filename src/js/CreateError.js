@@ -3,11 +3,14 @@
 
   window.zoo = window.zoo || {};
 
-  
-  // allows creation of custom error
+  /**
+   * [CustomError allows creation of custom error]
+   * @param {String} message [custom error message]
+   */
   window.zoo.CustomError = function CustomError(message) {
     this.name = 'CustomError';
-    this.message = message || 'Default Message';
+    this.message = message || 'Custom Error!';
     this.stack = (new Error()).stack;
   };
+
 }());

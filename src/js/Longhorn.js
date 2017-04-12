@@ -11,17 +11,16 @@
      * [constructor for Longhorn]
      * @param  {String} name        [name of this instance of Longhorn]
      * @param  {Date}   dateOfBirth [Date object containing date of birth]
-     * @throws any.error            Propagates the error received from the parent class
      * @return {void}               [nothing is returned]
      */
     constructor(name, dateOfBirth) {
       // if the call to the base class constructor fails,
-      // log error and propagate the error
+      // catch error and log a message to the console, 
+      // but do not halt the program
       try {
         super(name, dateOfBirth); // call the parent class constructor
       } catch (error) {
         console.error('super() call to Animal constructor failed!');
-        throw error;
       }
       this.species = 'Texas Longhorn';
     }
